@@ -1,2 +1,3 @@
-# my-macos-dotfiles
+# My macOS Dotfiles
+
 Repository containing my macOS dotfiles.
