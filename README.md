@@ -1,3 +1,3 @@
 # My macOS Dotfiles
 
-Repository containing my macOS dotfiles.
+This repository contains my macOS dotfiles managed [chezmoi](https://github.com/twpayne/chezmoi).
