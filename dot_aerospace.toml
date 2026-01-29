@@ -12,7 +12,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+	'exec-and-forget borders active_color=0xffe1e3e4 inactive_col'
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -24,7 +26,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 25
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -44,6 +46,20 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+# Assign workspaces to monitors
+[workspace-to-monitor-force-assignment]
+0 = "main"
+1 = "main"
+2 = "main"
+3 = "main"
+4 = "main"
+5 = "main"
+6 = "secondary"
+7 = "secondary"
+8 = "secondary"
+9 = "secondary"
+
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -52,12 +68,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 0
-inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       5
+outer.bottom =     5
+outer.top =        5
+outer.right =      5
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -92,6 +108,8 @@ outer.right =      0
 alt-shift-period = 'layout tiles horizontal vertical'
 alt-shift-comma = 'layout accordion horizontal vertical'
 
+alt-f = 'fullscreen'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -110,30 +128,30 @@ alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-0 = 'workspace 0'
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-alt-b = 'workspace B'
-alt-i = 'workspace I'
-alt-m = 'workspace M'
-alt-o = 'workspace O'
-alt-u = 'workspace U'
-alt-y = 'workspace Y'
 
 alt-n = 'workspace next'
 alt-p = 'workspace prev'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-0 = 'move-node-to-workspace 0'
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-b = 'move-node-to-workspace B'
-alt-shift-i = 'move-node-to-workspace I'
-alt-shift-m = 'move-node-to-workspace M'
-alt-shift-o = 'move-node-to-workspace O'
-alt-shift-u = 'move-node-to-workspace U'
-alt-shift-y = 'move-node-to-workspace Y'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -159,3 +177,24 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+## Automations
+
+# Floating window apps
+[[on-window-detected]]
+    if.app-id = 'net.whatsapp.WhatsApp'
+    run = ['layout floating tiling']
+
+[[on-window-detected]]
+    if.app-id = 'com.tinyspeck.slackmacgap'
+    if.app-name-regex-substring = 'Slack'
+    run = ['layout floating tiling']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.MobileSMS'
+    if.app-name-regex-substring = 'Messages'
+    run = ['layout floating tiling']
+
+[[on-window-detected]]
+    if.app-id = 'com.cisco.secureclient.gui'
+    if.app-name-regex-substring = 'Cisco Secure Client' # VPN
+    run = ['layout floating tiling']
